@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-import NoteForm from '../../../../components/NoteForm/NoteForm';
-import css from '../../../../components/NoteForm/NoteForm.module.css';
+import NoteForm from '../../../../../components/NoteForm/NoteForm';
+import css from '../../../../../components/NoteForm/NoteForm.module.css';
 import { Tag } from '@/types/note';
 
 export const metadata: Metadata = {

@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ChangeEvent } from 'react';
 import css from './NoteForm.module.css';
 import type { AddNote, Tag } from '../../types/note';
-import { createNote } from '../../lib/api';
+import { createNote } from '../../lib/api/clientApi';
 import { useNoteDraft } from '@/lib/store/noteStore';
 
 interface Props {
