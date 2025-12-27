@@ -13,7 +13,7 @@ export default function NoteList({ notes }: NoteListProps) {
 
   const deleteNoteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { deleteNote } = await import('../../lib/api/api');
+      const { deleteNote } = await import('../../lib/api/clientApi');
       return deleteNote(id);
     },
     onSuccess: () => {
