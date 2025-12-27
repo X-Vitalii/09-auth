@@ -1,21 +1,21 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-// import { AvatarPicker } from '@/components/AvatarPicker/AvatarPicker';
 import { getMe, updateMe } from '@/lib/api/clientApi';
 import css from '@/app/(private routes)/profile/edit/EditProfilePage.module.css';
 
-export const EditProfile = () => {
+export default function EditProfile() {
   const router = useRouter();
 
   const [username, setUserName] = useState('');
-  //   const [photoUrl, setPhotoUrl] = useState('');
+  const [avatarSrc, setAvatarSrc] = useState('/default-avatar.png');
 
   useEffect(() => {
     getMe().then((user) => {
       setUserName(user.username ?? '');
-      //   setPhotoUrl(user.photoUrl ?? '');
+      setAvatarSrc(user.avatar || '/default-avatar.png');
     });
   }, []);
 
@@ -37,12 +37,13 @@ export const EditProfile = () => {
     <main className={css.mainContent}>
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
-        <img
-          src="avatar"
+        <Image
+          src={avatarSrc}
           alt="User Avatar"
           width={120}
           height={120}
           className={css.avatar}
+          priority
         />
 
         <form onSubmit={handleSaveUser} className={css.profileInfo}>
@@ -75,6 +76,4 @@ export const EditProfile = () => {
       </div>
     </main>
   );
-};
-
-export default EditProfile;
+}
