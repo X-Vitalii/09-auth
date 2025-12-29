@@ -1,5 +1,5 @@
 import type { User } from '@/types/user';
-import { nextServer } from './api';
+import { nextServer } from './proxy';
 import type { Note, AddNote } from '../../types/note';
 
 export type Tag = 'Work' | 'Personal' | 'Meeting' | 'Shopping' | 'Todo';
