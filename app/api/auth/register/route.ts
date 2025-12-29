@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { api, ApiError } from '../../api';
+import { api } from '../../api';
 import { cookies } from 'next/headers';
 import { parse } from 'cookie';
 import { isAxiosError } from 'axios';
@@ -37,12 +37,8 @@ export async function POST(req: NextRequest) {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);
       return NextResponse.json(
-        {
-          error:
-            (error as ApiError).response?.data.error ??
-            (error as ApiError).message,
-        },
-        { status: (error as ApiError).status },
+        { error: error.message, response: error.response?.data },
+        { status: error.status },
       );
     }
     logErrorResponse({ message: (error as Error).message });

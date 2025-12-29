@@ -26,6 +26,7 @@ export async function fetchNotes({
   page,
   tag,
 }: FetchNotesParams): Promise<NotesResponse> {
+  const cookieStore = await cookies();
   const { data } = await api.get<NotesResponse>('/notes', {
     params: { page, perPage: 12, search: query, tag },
     headers: { Cookie: cookieStore.toString() },
@@ -34,6 +35,7 @@ export async function fetchNotes({
 }
 
 export async function fetchNoteById(id: string): Promise<Note> {
+  const cookieStore = await cookies();
   const { data } = await api.get<Note>(`/notes/${id}`, {
     headers: {
       Cookie: cookieStore.toString(),

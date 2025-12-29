@@ -12,7 +12,7 @@ export async function GET(request: Request, { params }: Params) {
   try {
     const cookieStore = await cookies();
     const { id } = await params;
-    const res = await api.get(`/notes/${id}`, {
+    const res = await api(`/notes/${id}`, {
       headers: {
         Cookie: cookieStore.toString(),
       },
