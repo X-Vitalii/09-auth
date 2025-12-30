@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-// import { nextServer } from './api';
+import { nextServer } from './api';
 import { User } from '@/types/user';
 import type { Note, Tag } from '../../types/note';
 import { api } from '@/app/api/api';
@@ -47,7 +47,7 @@ export async function fetchNoteById(id: string): Promise<Note> {
 export const checkServerSession = async () => {
   // get current actual cookies
   const cookieStore = await cookies();
-  const res = await api.get('/auth/session', {
+  const res = await nextServer.get('/auth/session', {
     headers: {
       // Pass cookies forward
       Cookie: cookieStore.toString(),
