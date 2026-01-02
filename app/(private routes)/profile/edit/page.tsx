@@ -9,7 +9,7 @@ import { useAuthStore } from '@/lib/store/authStore';
 
 export default function EditProfile() {
   const router = useRouter();
-  const { user } = useAuthStore();
+  const { user, setUser } = useAuthStore();
 
   const [userName, setUserName] = useState(user?.username);
 
@@ -19,7 +19,10 @@ export default function EditProfile() {
 
   const handleSaveUser = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await updateMe({ username: userName });
+    const updatedUser = await updateMe({ username: userName });
+
+    setUser(updatedUser);
+
     router.push('/profile');
   };
 
