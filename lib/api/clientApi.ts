@@ -62,12 +62,12 @@ export async function login(data: LoginRequest) {
 }
 
 export type SessionResponse = {
-  message: string;
+  success: boolean;
 };
 
 export async function checkSession() {
   const res = await nextServer.get<SessionResponse>('/auth/session');
-  return res.data;
+  return res.data.success;
 }
 
 export const getMe = async () => {
