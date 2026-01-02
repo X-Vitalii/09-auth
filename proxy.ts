@@ -22,7 +22,7 @@ export async function proxy(request: NextRequest) {
 
   if (isAuthRoute) {
     if (accessToken) {
-      return NextResponse.redirect(new URL('/profile', request.url));
+      return NextResponse.redirect(new URL('/', request.url));
     }
 
     if (!accessToken && refreshToken) {
@@ -47,7 +47,7 @@ export async function proxy(request: NextRequest) {
             cookieStore.set('refreshToken', parsed.refreshToken, options);
         }
 
-        return NextResponse.redirect(new URL('/profile', request.url));
+        return NextResponse.redirect(new URL('/', request.url));
       }
     }
 
